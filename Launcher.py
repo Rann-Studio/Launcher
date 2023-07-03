@@ -24,7 +24,7 @@ class Launcher:
     def check_update(self):
         try:
             latest_version = requests.get('https://raw.githubusercontent.com/Rann-Studio/Launcher/main/Launcher.py', timeout=10).text.replace('\r', '')
-            with open("temp.txt", "w") as file:
+            with open("temp.txt", "w", encoding="utf-8") as file:
                 file.write(latest_version)
 
             are_files_equal = filecmp.cmp('Launcher.py', "temp.txt")
@@ -34,7 +34,7 @@ class Launcher:
                 self.main_program()
             else:
                 self.print_clear('New version is available. Updating...')
-                with open('Launcher.py', 'w') as file:
+                with open('Launcher.py', 'w', encoding="utf-8") as file:
                     file.write(latest_version)
 
                 self.print_clear('Update complete, restarting...')
