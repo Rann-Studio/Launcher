@@ -38,7 +38,7 @@ class Launcher:
             latest_version (str): The latest version file data.
         """
         try:
-            latest_version = requests.get('https://pastebin.com/raw/kpH5r2fg', timeout=10).text.strip()
+            latest_version = requests.get('https://raw.githubusercontent.com/Rann-Studio/Launcher/main/Launcher.py', timeout=10).text.strip()
             if not perform_update:
                 return latest_version
             else:
