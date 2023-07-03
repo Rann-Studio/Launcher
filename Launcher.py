@@ -7,7 +7,7 @@ import filecmp
 
 class Launcher:
     def __init__(self):
-        self.print_clear('Checking for the latest version...')
+        self.print_clear('Checking version...')
         self.check_update()
 
     def print_clear(self, message):
