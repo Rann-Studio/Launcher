@@ -70,18 +70,23 @@ class Launcher:
 
 
     def show_menu(self):
-        print("=== MENU ===")
-        print("1. Pilihan 1")
-        print("2. Pilihan 2")
-        print("3. Pilihan 3")
-        print("4. Keluar")
+        menu = inspect.cleandoc("""
+        0. Exit Program
+        1. Option 1
+        2. Option 2
+        3. Option 3
+        4. Option 4
+        5. Option 5
+        """)
+        print(menu)
         
 
     def main_program(self):
         self.clear()
         self.show_banner()
         self.show_menu()
-
+        
+        user_input = input(">> ")     
 
 if __name__ == '__main__':
     Launcher()
