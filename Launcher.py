@@ -69,7 +69,6 @@ class Launcher:
     
     def exit_program(self):
         self.print_clear('Thanks for using this program.')
-        os.system('pause')
         sys.exit()
 
 
@@ -103,13 +102,13 @@ class Launcher:
         self.show_banner()
         self.show_menu()
         
-        user_input = int(input("\nSelect an option: "))
+        user_input = input("\nSelect an option: ")
 
-        if user_input == 0:
+        if user_input == "0":
             self.exit_program()
             
         else:
-            print('Incorrect option.')
+            print('Incorrect option.', end="\r")
             time.sleep(3)
             self.main_program()
 
