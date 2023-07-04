@@ -16,13 +16,12 @@ class Launcher:
 
 
     def print_clear(self, message):
-        os.system('cls' if os.name == 'nt' else 'clear')
+        self.clear()
         print(message)
-        time.sleep(3)
     
         
     def print_loading(self, message, dots=3, loop=2):
-        os.system('cls' if os.name == 'nt' else 'clear')
+        self.clear()
         for i in range(loop):
             for j in range(0, dots + 1):
                 print(f"{message}{'.' * j}\033[K", end="\r")
@@ -69,7 +68,9 @@ class Launcher:
     
     
     def exit_program(self):
-        sys.exit('Thanks for using this program.')
+        self.print_clear('Thanks for using this program.')
+        os.system('pause')
+        sys.exit()
 
 
     def show_banner(self):
