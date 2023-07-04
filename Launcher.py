@@ -109,6 +109,8 @@ class Launcher:
             self.exit_program()
             
         else:
+            print('Incorrect option.')
+            time.sleep(3)
             self.main_program()
 
 if __name__ == '__main__':
