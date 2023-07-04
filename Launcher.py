@@ -8,7 +8,7 @@ import inspect
 
 class Launcher:
     def __init__(self):
-        self.print_clear('Checking version...')
+        self.print_loading('Checking version')
         self.check_update()
 
     def clear(self):
@@ -19,6 +19,17 @@ class Launcher:
         os.system('cls' if os.name == 'nt' else 'clear')
         print(message)
         time.sleep(3)
+    
+        
+    def print_loading(self, message, dots=3, loop=2):
+        for i in range(loop):
+            for j in range(0, dots + 1):
+                print(f"{message}{'.' * j}\033[K", end="\r")
+                time.sleep(0.3)
+
+            for j in range(dots - 1, 0, -1):
+                print(f"{message}{'.' * j}\033[K", end="\r")
+                time.sleep(0.3)
 
 
     def check_update(self):
@@ -33,15 +44,15 @@ class Launcher:
             if are_files_equal:
                 self.main_program()
             else:
-                self.print_clear('New version is available. Updating...')
+                self.print_loading('New version is available. Updating')
                 with open('Launcher.py', 'w', encoding="utf-8") as file:
                     file.write(latest_version)
 
-                self.print_clear('Update complete, restarting...')
+                self.print_loading('Update complete, restarting')
                 self.restart_program()
 
         except requests.exceptions.ConnectTimeout:
-            self.print_clear('Connection timeout. Attempting to reconnect...')
+            self.print_loading('Connection timeout. Attempting to reconnect')
             self.check_update()
 
         except requests.exceptions.ConnectionError:
@@ -54,6 +65,11 @@ class Launcher:
     def restart_program(self):
         python = sys.executable
         os.execl(python, python, *sys.argv)
+    
+    
+    def exit_program(self):
+        self.print_clear('Thanks for using this program.')
+        sys.exit(0)
 
 
     def show_banner(self):
@@ -66,7 +82,7 @@ class Launcher:
         ╚═╝  ╚═══╝╚══════╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝
         Author : Rann
         """)
-        print(banner + '\n\n')
+        print(banner + '\n')
 
 
     def show_menu(self):
@@ -86,7 +102,10 @@ class Launcher:
         self.show_banner()
         self.show_menu()
         
-        user_input = input(">> ")     
+        user_input = int(input("\nSelect an option: "))
+
+        if user_input == 0:
+            self.exit_program()
 
 if __name__ == '__main__':
-    Launcher()
+    App = Launcher()
